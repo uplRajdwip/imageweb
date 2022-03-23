@@ -18,19 +18,23 @@ function Hook() {
         },
       };
       let url: string = `${URL}?key=${API_KEY}&q=${searchData}&image_type=photo&per_page=30`;
+        
+
       const result = fetch(url, requestValues)
         .then((result: any) => {
           return result.json()
         })
         .then((result: any) => {
-          // console.log(result.hits, 'result');
+          console.log(result,'result is found');
           setSearchData(result.hits);
         })
         .catch((err: any) => {
           console.log(err, "error")
         }
         );
-    }
+    } else ((err:any) => {
+      console.log(err, 'notfund')
+    })
   };
   return { getPixabayImages, searchdata };
 }
