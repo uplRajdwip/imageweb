@@ -7,10 +7,17 @@
     align-items: center;
     padding-left: 16px;
     padding-right: 16px;
+    
 }
 .input_fild{
     display: flex;
     justify-content: center;
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
+    height: 2.7rem;
+    width: 36.2rem;
+    border-radius: 50px;
 }
 .inputFild{
     width: 30rem;
@@ -34,4 +41,18 @@
     border-style: none;
     background-color: rgb(228, 228, 255);
     padding: 0;
+}
+.image_fild{
+    padding: 8px;
+    overflow: hidden;
+}
+
+.background_text h2{
+    font-size: 130px;
+    color: #cacaca;
+    position: fixed;
+    padding-left: 14rem;
+    padding-right: 14rem;
+    padding-top: 5rem;
+    
 }
