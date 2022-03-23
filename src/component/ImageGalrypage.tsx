@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import Header from '../common/header';
-import { Button, Divider, Drawer, ImageList, ImageListItem, List, ListItem, ListItemIcon, ListItemText, SwipeableDrawer } from '@mui/material'
+import { AppBar, Button, Dialog, Divider, Drawer, IconButton, ImageList, ImageListItem, List, ListItem, ListItemIcon, ListItemText, SwipeableDrawer, Toolbar } from '@mui/material'
 import Hook from './hooks';
 import styles from '../common/header.module.css'
 import { Box, color } from '@mui/system';
 import ClipLoader from "react-spinners/ClipLoader";
 import { Form } from 'formik';
-
+import Image from 'next/image';
+// import close from '../../public/close.png'
 type Anchor = 'right';
 
 const ImageGalrypage = () => {
@@ -29,7 +30,7 @@ const ImageGalrypage = () => {
   });
   const [sidebarUrl, setSidebarUrl] = useState()
   const toggleDrawer =
-    (anchor: Anchor, open: boolean, url? : any) =>
+    (anchor: Anchor, open: boolean, url?: any) =>
       (event: React.KeyboardEvent | React.MouseEvent) => {
         console.log(url, "data")
         setSidebarUrl(url);
@@ -46,14 +47,20 @@ const ImageGalrypage = () => {
 
   const list = (anchor: Anchor) => (
     <Box
-      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 1000 }}
+      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 1200 }}
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
 
       <Divider />
-      <img src={sidebarUrl}  className={styles.sideBarImage}/>
+      <div>
+      <div className={styles.close_image}>
+      <Image src='/Image/close.png' className={styles.close_image_cls}  height={50} width={50} />
+      </div>
+      <img src={sidebarUrl} className={styles.sideBarImage} />
+      </div>
+      
     </Box>
   );
   return (
@@ -64,33 +71,35 @@ const ImageGalrypage = () => {
           onChange={(event: any) => SearchFildHandler(event.target.value)}
           button={true}
           onClick={() => getPixabayImages(searchFildInput)}
+          loder={true}
         />
+       
       </div>
-     
-        <div>
-          {(['right'] as const).map((anchor) => (
-            <React.Fragment key={anchor}>
-              <div className={styles.image_fild}>
-                <div className={styles.background_text}><h2>Search Image's</h2></div>
-                <ImageList sx={{ height: 1000, overflow: 'hidden' }} cols={5} rowHeight={30} >
-                  {searchdata.map((item: any) => (
-                    <ImageListItem key={item.id} onClick={toggleDrawer(anchor, true, item.largeImageURL)}>
-                      <img src={item.largeImageURL} />
-                      {anchor}
-                    </ImageListItem>
-                  ))}
-                </ImageList>
-              </div>
-              <Drawer
-                anchor={anchor}
-                open={state[anchor]}
-                onClose={toggleDrawer(anchor, false)}
-              >
-                {list(anchor)}
-              </Drawer>
-            </React.Fragment>
-          ))}
-        </div>
+
+      <div>
+        {(['right'] as const).map((anchor) => (
+          <React.Fragment key={anchor}>
+            <div className={styles.image_fild}>
+              <div className={styles.background_text}><h2>Search Image's</h2></div>
+              <ImageList sx={{ height: 1000, overflow: 'hidden' }} cols={5} rowHeight={30} >
+                {searchdata.map((item: any) => (
+                  <ImageListItem key={item.id} onClick={toggleDrawer(anchor, true, item.largeImageURL)}>
+                    <img src={item.largeImageURL} />
+                    {anchor}
+                  </ImageListItem>
+                ))}
+              </ImageList>
+            </div>
+            <Drawer
+              anchor={anchor}
+              open={state[anchor]}
+              onClose={toggleDrawer(anchor, false)}
+            >
+              {list(anchor)}
+            </Drawer>
+          </React.Fragment>
+        ))}
+      </div>
     </>
   )
 }
