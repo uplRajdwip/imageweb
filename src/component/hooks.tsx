@@ -3,6 +3,7 @@ import React, { useState } from "react";
 function Hook() {
   const [searchdata, setSearchData]: any = useState([]);
   const [errorFound, setErrorFound]: any = useState([]);
+  const [loader, seatLoader]: any = useState(false);
 
   const API_KEY = "26246238-50f1e0cba6f9b9f8362e54889";
   const URL = "https://pixabay.com/api/"
@@ -10,7 +11,7 @@ function Hook() {
   const getPixabayImages = (searchData: string) => {
 
     if (searchData) {
-
+      seatLoader(true)
       const requestValues: object = {
         method: "GET",
         Headers: {
@@ -18,18 +19,22 @@ function Hook() {
           // Authorization : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzk2ZWNmNmIzMWUzNTdkNDVkNjIyNCIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjQ3OTMxNDMwLCJleHAiOjE2NDgwMTc4MzB9.BkQKCFDVzrGsGb8wOkneDFwt7e7tR0J3znZ3dtj94PY"
         },
       };
-      let url: string = `${URL}?key=${API_KEY}&q=${searchData}&image_type=photo&per_page=30`;
+      let url: string = `${URL}?key=${API_KEY}&q=${searchData}&image_type=photo&per_page=30&safesearch=true`;
         
-
       const result = fetch(url, requestValues)
         .then((result: any) => {
           return result.json()
         })
         .then((result: any) => {
           console.log(result,'result is found');
-          setSearchData(result.hits);
-          if (result.hits.length == 0){
-            setErrorFound('//*// 404... You enter somthing wrong... //*//');
+          seatLoader(false)
+          if (result.hits.length > 0){
+            console.log('empty')
+            setSearchData(result.hits);
+            setErrorFound('')
+          }
+          else {
+            setErrorFound('- did not match any documents.');
           }
         })
         .catch((err: any) => {
@@ -40,7 +45,7 @@ function Hook() {
       console.log(err, 'notfund')
     })
   };
-  return { getPixabayImages, searchdata, errorFound };
+  return { getPixabayImages, searchdata, errorFound, loader };
 }
 
 export default Hook;

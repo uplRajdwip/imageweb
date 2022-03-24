@@ -7,17 +7,22 @@ import { Box, color } from '@mui/system';
 import ClipLoader from "react-spinners/ClipLoader";
 import { Form } from 'formik';
 import Image from 'next/image';
+import Loader from 'react-spinners/ClipLoader';
 // import close from '../../public/close.png'
 type Anchor = 'right';
 
 const ImageGalrypage = () => {
 
-  const { getPixabayImages, searchdata, errorFound } = Hook();
+  const { getPixabayImages, searchdata, errorFound, loader } = Hook();
   const [searchFildInput, setsearchFildInput] = useState('')
 
   const SearchFildHandler = (searchData: any) => {
     setsearchFildInput(searchData);
   };
+
+  useEffect(() => {
+    console.log(errorFound, 'loading');
+  }, [errorFound])
 
   type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
@@ -45,6 +50,8 @@ const ImageGalrypage = () => {
         setState({ ...state, [anchor]: open });
       };
 
+
+
   const list = (anchor: Anchor) => (
     <Box
       sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 1200 }}
@@ -71,39 +78,42 @@ const ImageGalrypage = () => {
           onChange={(event: any) => SearchFildHandler(event.target.value)}
           button={true}
           onClick={() => getPixabayImages(searchFildInput)}
+          onKeyPress={(e:any) => {e.key === 'Enter' && getPixabayImages(searchFildInput)}}
           loder={true}
         />
 
       </div>
-
-      <div>
-        {(['right'] as const).map((anchor) => (
-          <React.Fragment key={anchor}>
-            <div className={styles.image_fild}>
-              <div className={styles.background_text}><h2>Search Image's</h2></div>
-              {errorFound == 0 ? 
-              (<ImageList sx={{ height: 1000, overflow: 'hidden' }} cols={5} rowHeight={30} >
-                {searchdata.map((item: any) => (
-                  <ImageListItem key={item.id} onClick={toggleDrawer(anchor, true, item.largeImageURL)}>
-                    <img src={item.largeImageURL} />
-                    {anchor}
-                  </ImageListItem>
-                ))}
-              </ImageList>)
-                :
-                (<div className={styles.errMsg}>{errorFound}</div>)
-              }
-            </div>
-            <Drawer
-              anchor={anchor}
-              open={state[anchor]}
-              onClose={toggleDrawer(anchor, false)}
-            >
-              {list(anchor)}
-            </Drawer>
-          </React.Fragment>
-        ))}
-      </div>
+      {loader === true ?
+       <Loader />
+        :
+        <div>
+          {(['right'] as const).map((anchor) => (
+            <React.Fragment key={anchor}>
+              <div className={styles.image_fild}>
+                <div className={styles.background_text}><h2>Search Image's</h2></div>
+                {errorFound === ''?
+                  (<ImageList sx={{ height: 1000, overflow: 'hidden' }} cols={5} rowHeight={30} >
+                    {searchdata.map((item: any) => (
+                      <ImageListItem key={item.id} onClick={toggleDrawer(anchor, true, item.largeImageURL)}>
+                        <img src={item.largeImageURL} />
+                        {anchor}
+                      </ImageListItem>
+                    ))}
+                  </ImageList>)
+                  :
+                  <div className={styles.errMsg}>{errorFound}</div>
+                }
+              </div>
+              <Drawer
+                anchor={anchor}
+                open={state[anchor]}
+                onClose={toggleDrawer(anchor, false)}
+              >
+                {list(anchor)}
+              </Drawer>
+            </React.Fragment>
+          ))}
+        </div>}
     </>
   )
 }

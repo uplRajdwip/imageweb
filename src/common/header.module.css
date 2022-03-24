@@ -29,6 +29,7 @@
     background-color: rgb(255, 219, 198);
     font-size: 18px;
     padding-left: 1rem;
+    padding-right: 1rem;
     /* padding: 0; */
 }
 .SearchBtn{
@@ -159,7 +160,7 @@
   }
   .errMsg{
     font-size: 30px;
-    color:red;
+    color:rgb(25, 0, 255);
     font-style: normal;
     display: flex;
     justify-content: center;
