@@ -12,7 +12,7 @@ type Anchor = 'right';
 
 const ImageGalrypage = () => {
 
-  const { getPixabayImages, searchdata } = Hook();
+  const { getPixabayImages, searchdata, errorFound } = Hook();
   const [searchFildInput, setsearchFildInput] = useState('')
 
   const SearchFildHandler = (searchData: any) => {
@@ -55,12 +55,12 @@ const ImageGalrypage = () => {
 
       <Divider />
       <div>
-      <div className={styles.close_image}>
-      <Image src='/Image/close.png' className={styles.close_image_cls}  height={50} width={50} />
+        <div className={styles.close_image}>
+          <Image src='/Image/close.png' className={styles.close_image_cls} height={50} width={50} />
+        </div>
+        <img src={sidebarUrl} className={styles.sideBarImage} />
       </div>
-      <img src={sidebarUrl} className={styles.sideBarImage} />
-      </div>
-      
+
     </Box>
   );
   return (
@@ -73,7 +73,7 @@ const ImageGalrypage = () => {
           onClick={() => getPixabayImages(searchFildInput)}
           loder={true}
         />
-       
+
       </div>
 
       <div>
@@ -81,14 +81,18 @@ const ImageGalrypage = () => {
           <React.Fragment key={anchor}>
             <div className={styles.image_fild}>
               <div className={styles.background_text}><h2>Search Image's</h2></div>
-              <ImageList sx={{ height: 1000, overflow: 'hidden' }} cols={5} rowHeight={30} >
+              {errorFound == 0 ? 
+              (<ImageList sx={{ height: 1000, overflow: 'hidden' }} cols={5} rowHeight={30} >
                 {searchdata.map((item: any) => (
                   <ImageListItem key={item.id} onClick={toggleDrawer(anchor, true, item.largeImageURL)}>
                     <img src={item.largeImageURL} />
                     {anchor}
                   </ImageListItem>
                 ))}
-              </ImageList>
+              </ImageList>)
+                :
+                (<div className={styles.errMsg}>{errorFound}</div>)
+              }
             </div>
             <Drawer
               anchor={anchor}

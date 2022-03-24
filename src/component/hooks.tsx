@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 function Hook() {
   const [searchdata, setSearchData]: any = useState([]);
+  const [errorFound, setErrorFound]: any = useState([]);
 
   const API_KEY = "26246238-50f1e0cba6f9b9f8362e54889";
   const URL = "https://pixabay.com/api/"
@@ -27,6 +28,9 @@ function Hook() {
         .then((result: any) => {
           console.log(result,'result is found');
           setSearchData(result.hits);
+          if (result.hits.length == 0){
+            setErrorFound('//*// 404... You enter somthing wrong... //*//');
+          }
         })
         .catch((err: any) => {
           console.log(err, "error")
@@ -36,7 +40,7 @@ function Hook() {
       console.log(err, 'notfund')
     })
   };
-  return { getPixabayImages, searchdata };
+  return { getPixabayImages, searchdata, errorFound };
 }
 
 export default Hook;

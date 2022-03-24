@@ -18,12 +18,12 @@ const Header = (props: any) => {
                 </div>
 
                 <div>
-                    {props.loder && <div className={styles.sk_folding_cube} id={props.id}>
+                    {/* {props.loder && <div className={styles.sk_folding_cube} id={props.id}>
                         <div className={`${styles.sk_cube1} ${styles.sk_cube}`}></div>
                         <div className={`${styles.sk_cube2} ${styles.sk_cube}`}></div>
                         <div className={`${styles.sk_cube4} ${styles.sk_cube}`}></div>
                         <div className={`${styles.sk_cube3} ${styles.sk_cube}`}></div>
-                    </div>}
+                    </div>} */}
                 </div>
             </div>
         </div>

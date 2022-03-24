@@ -65,8 +65,8 @@
     position: absolute;
 }
 .close_image_cls{
-   
     position: relative;
+    cursor: pointer;
 }
 
 
@@ -156,4 +156,12 @@
               transform: perspective(140px) rotateY(180deg);
       opacity: 0; 
     }
+  }
+  .errMsg{
+    font-size: 30px;
+    color:red;
+    font-style: normal;
+    display: flex;
+    justify-content: center;
+    padding-top: 8rem;
   }
