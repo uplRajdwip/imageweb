@@ -86,11 +86,11 @@ const ImageGalrypage = () => {
       {loader === true ?
        <Loader />
         :
-        <div>
+        <div className={styles.fullBackground} >
           {(['right'] as const).map((anchor) => (
             <React.Fragment key={anchor}>
               <div className={styles.image_fild}>
-                <div className={styles.background_text}><h2>Search Image's</h2></div>
+                <div className={styles.background_text}><h2>Search Image</h2></div>
                 {errorFound === ''?
                   (<ImageList sx={{ height: 1000, overflow: 'hidden' }} cols={5} rowHeight={30} >
                     {searchdata.map((item: any) => (
