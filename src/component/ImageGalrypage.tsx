@@ -76,10 +76,10 @@ const ImageGalrypage = () => {
         <Header
           input={true}
           onChange={(event: any) => SearchFildHandler(event.target.value)}
-          button={true}
-          onClick={() => getPixabayImages(searchFildInput)}
+          Searchbutton={true}
+          onClickSearch={() => getPixabayImages(searchFildInput)}
           onKeyPress={(e:any) => {e.key === 'Enter' && getPixabayImages(searchFildInput)}}
-          loder={true}
+          // Refreshbutton={true}
         />
 
       </div>

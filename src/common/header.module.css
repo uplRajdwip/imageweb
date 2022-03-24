@@ -43,6 +43,17 @@
     background-color: rgb(228, 228, 255);
     padding: 0;
 }
+.RefreshBtn{
+  height: 2.6rem;
+  width: 6rem;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  outline:none;
+  cursor: pointer;
+  border-style: none;
+  background-color: rgb(228, 228, 255);
+  padding: 0;
+}
 .image_fild{
     padding: 8px;
     overflow: hidden;

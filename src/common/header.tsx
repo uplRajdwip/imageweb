@@ -12,8 +12,10 @@ const Header = (props: any) => {
                     <h2>PI</h2>
                 </div>
                 <div className={styles.input_fild}>
+                    {props.Refreshbutton && <button className={styles.RefreshBtn} onClick={props.onClickRefresh}>Refresh</button>}
                     {props.input && <input type={'text'} onKeyPress={props.onKeyPress} onChange={props.onChange} placeholder="Search Image's" className={styles.inputFild}/>}
-                    {props.button && <button className={styles.SearchBtn} onClick={props.onClick}>Search</button>}
+                    {props.Searchbutton && <button className={styles.SearchBtn} onClick={props.onClickSearch}>Search</button>}
+                    
                 </div>
 
                 <div>
