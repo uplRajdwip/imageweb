@@ -19,30 +19,31 @@ function Hook() {
           // Authorization : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzk2ZWNmNmIzMWUzNTdkNDVkNjIyNCIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjQ3OTMxNDMwLCJleHAiOjE2NDgwMTc4MzB9.BkQKCFDVzrGsGb8wOkneDFwt7e7tR0J3znZ3dtj94PY"
         },
       };
-      let url: string = `${URL}?key=${API_KEY}&q=${searchData}&image_type=photo&per_page=30&safesearch=true`;
-        
+      let url: string = `${URL}?key=${API_KEY}&q=${searchData}&image_type=photo&per_page=40&safesearch=true`;
+
+
       const result = fetch(url, requestValues)
         .then((result: any) => {
           return result.json()
         })
         .then((result: any) => {
-          console.log(result,'result is found');
+          // console.log(result,'result is found');
           seatLoader(false)
-          if (result.hits.length > 0){
-            console.log('empty')
+          if (result.hits.length > 0) {
+            // console.log('empty')
             setSearchData(result.hits);
             setErrorFound('')
           }
           else {
-            setErrorFound('- did not match any documents.');
+            setErrorFound('your search - ' + searchData + ' - did not match any image.');
           }
         })
         .catch((err: any) => {
-          console.log(err, "error")
+          // console.log(err, "error")
         }
         );
-    } else ((err:any) => {
-      console.log(err, 'notfund')
+    } else ((err: any) => {
+      // console.log(err, 'notfund')
     })
   };
   return { getPixabayImages, searchdata, errorFound, loader };

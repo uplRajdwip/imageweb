@@ -1,7 +1,7 @@
 .header{
     width: 100%;
     height: 90px;
-    background-color: #000000;
+    background-color: #000000f3;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -10,11 +10,10 @@
 }
 .headerName h2{
   color: #fff3be;
-
 }
 .fullBackground{
   background-color: rgba(0, 0, 0, 0.800);
-  height: 200vh;
+  height: 150vh;
 }
 /* .fullBackground h2{
   background-color: black;
@@ -32,15 +31,16 @@
 .inputFild{
     width: 30rem;
     height: 2.6rem;
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
+    /* border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px; */
     border-style: none;
     outline:none;
-    background-color: #fff3be;
+    background-color: #fff7d9;
     font-size: 18px;
     padding-left: 1rem;
     padding-right: 1rem;
     /* padding: 0; */
+    text-align: center;
 }
 .SearchBtn{
     height: 2.6rem;
@@ -50,8 +50,12 @@
     outline:none;
     cursor: pointer;
     border-style: none;
-    background-color: rgb(103, 0, 151);
+    background-color: #670097;
     padding: 0;
+    color: #fae8b8;
+    font-size: large;
+    font-style: normal;
+    font-weight: bold;
 }
 .RefreshBtn{
   height: 2.6rem;
@@ -61,8 +65,12 @@
   outline:none;
   cursor: pointer;
   border-style: none;
-  background-color: rgb(228, 228, 255);
+  background-color: #670097;
   padding: 0;
+  color: #fae8b8;
+  font-size: large;
+  font-style: normal;
+  font-weight: bold;
 }
 .image_fild{
     padding: 8px;
