@@ -10,6 +10,7 @@
 }
 .headerName h2{
   color: #fff3be;
+  cursor: pointer;
 }
 .fullBackground{
   background-color: rgba(0, 0, 0, 0.800);
@@ -18,7 +19,7 @@
 /* .fullBackground h2{
   background-color: black;
 } */
-.input_fild{
+/* .input_fild{
     display: flex;
     justify-content: center;
     border-color: #000000;
@@ -27,12 +28,12 @@
     height: 2.7rem;
     width: 36.2rem;
     border-radius: 50px;
-}
+} */
 .inputFild{
     width: 30rem;
     height: 2.6rem;
-    /* border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px; */
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
     border-style: none;
     outline:none;
     background-color: #fff7d9;
@@ -40,7 +41,7 @@
     padding-left: 1rem;
     padding-right: 1rem;
     /* padding: 0; */
-    text-align: center;
+    /* text-align: center; */
 }
 .SearchBtn{
     height: 2.6rem;
@@ -57,7 +58,7 @@
     font-style: normal;
     font-weight: bold;
 }
-.RefreshBtn{
+/* .RefreshBtn{
   height: 2.6rem;
   width: 6rem;
   border-top-left-radius: 20px;
@@ -71,7 +72,7 @@
   font-size: large;
   font-style: normal;
   font-weight: bold;
-}
+} */
 .image_fild{
     padding: 8px;
     overflow: hidden;

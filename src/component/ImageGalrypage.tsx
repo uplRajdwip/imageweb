@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import Header from '../common/header';
-import {  Divider, Drawer, ImageList, ImageListItem } from '@mui/material'
+import { Divider, Drawer, ImageList, ImageListItem } from '@mui/material'
 import Hook from './hooks';
 import styles from '../common/header.module.css'
 import { Box } from '@mui/system';
 import Image from 'next/image';
 import Loader from 'react-spinners/ClipLoader';
+// import UrlImageDownloader from 'react-url-image-downloader';
 type Anchor = 'right';
 
 const ImageGalrypage = () => {
 
   const { getPixabayImages, searchdata, errorFound, loader } = Hook();
   const [searchFildInput, setsearchFildInput] = useState('')
+  // const [Download, setDownload] = useState('')
   // console.log(searchFildInput ,'dfghg');
 
   const SearchFildHandler = (searchData: any) => {
@@ -49,6 +51,10 @@ const ImageGalrypage = () => {
         setState({ ...state, [anchor]: open });
       };
 
+      // const DoDownload = () => {
+      //   setDownload(searchdata);
+      // }
+
   const refreshPage = () => {
     window.location.reload();
   }
@@ -64,17 +70,17 @@ const ImageGalrypage = () => {
       <Divider />
       <div>
         <div className={styles.close_image}>
-          <Image src='/Image/close.png' className={styles.close_image_cls} height={50} width={50} />
+       <Image src='/Image/close.png' className={styles.close_image_cls} height={50} width={50} />
         </div>
-        <img src={sidebarUrl} className={styles.sideBarImage} />
+         <img src={sidebarUrl} className={styles.sideBarImage} />
       </div>
-
     </Box>
   );
   return (
     <>
       <div>
         <Header
+          logo={true}
           input={true}
           onChange={(event: any) => SearchFildHandler(event.target.value)}
           Searchbutton={true}
@@ -97,7 +103,9 @@ const ImageGalrypage = () => {
                   (<ImageList sx={{ height: 1000, overflow: 'hidden' }} cols={5} rowHeight={40} >
                     {searchdata.map((item: any) => (
                       <ImageListItem key={item.id} onClick={toggleDrawer(anchor, true, item.largeImageURL)}>
-                        <img src={item.largeImageURL} />
+                       <img src={item.largeImageURL} />
+                      
+                      
                         {anchor}
                       </ImageListItem>
                     ))}

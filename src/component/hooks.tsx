@@ -27,6 +27,8 @@ function Hook() {
           return result.json()
         })
         .then((result: any) => {
+
+
           // console.log(result,'result is found');
           seatLoader(false)
           if (result.hits.length > 0) {
